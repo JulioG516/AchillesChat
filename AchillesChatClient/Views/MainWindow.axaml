@@ -1,0 +1,66 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AchillesChatClient.ViewModels"
+        xmlns:models="using:AchillesChatClient.Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AchillesChatClient.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AchillesChatClient"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+       >
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False" >
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.45">
+                </ExperimentalAcrylicMaterial>
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+
+        <Grid RowDefinitions="100, *, Auto" ColumnDefinitions="220, *">
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <ScrollViewer>
+                    <ListBox ItemsSource="{Binding  Participants }">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="models:ChatParticipant">
+                                <Border>
+                                    
+                                    <TextBlock Text="{Binding DisplayName}"></TextBlock>
+
+                        
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+
+
+            <Rectangle Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Fill="Purple"></Rectangle>
+
+            <Rectangle Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Fill="Orange"></Rectangle>
+
+
+        </Grid>
+
+        <!-- Users  -->
+
+
+    </Panel>
+
+
+</Window>
