@@ -18,6 +18,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [ObservableProperty] public string messageToSend;
     [ObservableProperty] public string userName;
+    [ObservableProperty] public bool _isConnected;
 
     public ObservableCollection<string> MessagesList { get; } = new();
 
