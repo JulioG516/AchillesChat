@@ -15,7 +15,7 @@
     <Application.Styles>
         <FluentTheme />
 
-        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Purple" />
+        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="DeepPurple" />
         <materialIcons:MaterialIconStyles />
     </Application.Styles>
 </Application>

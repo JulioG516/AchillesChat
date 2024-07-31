@@ -15,6 +15,7 @@ public partial class ChatViewModel : PageViewModelBase
     [ObservableProperty] public string messageToSend;
     [ObservableProperty] public string userName;
     [ObservableProperty] public bool _isConnected;
+    [ObservableProperty] public ChatParticipant _selectedParticipant;
 
     public ObservableCollection<string> MessagesList { get; } = new();
 
@@ -28,6 +29,118 @@ public partial class ChatViewModel : PageViewModelBase
                 IsTyping = true,
                 IsLoggedIn = true,
                 IsOverSeer = true
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "Adoniran Barbosa",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "Tom Jobim",
+                IsTyping = true,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "Marcos Valles",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = true,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = true,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
+            },
+            new ChatParticipant()
+            {
+                Name = "john.doe",
+                DisplayName = "John Doe",
+                IsTyping = false,
+                IsLoggedIn = true,
+                IsOverSeer = false
             },
             new ChatParticipant()
             {
@@ -66,6 +179,16 @@ public partial class ChatViewModel : PageViewModelBase
         _chatService.SendMessage(UserName, MessageToSend);
     }
 
+
+    [RelayCommand]
+    private void EscPressed()
+    {
+        if (SelectedParticipant != null)
+        {
+            SelectedParticipant = null;
+        }
+    }
+    
     #endregion
 
     # region Events

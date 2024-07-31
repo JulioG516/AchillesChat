@@ -13,7 +13,7 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:ChatViewModel />
+        <vm:LoginViewModel />
     </Design.DataContext>
 
     <Panel>
@@ -21,16 +21,33 @@
             <controls:Card Background="Transparent">
                 <StackPanel MinWidth="200" Orientation="Vertical" VerticalAlignment="Center"
                             HorizontalAlignment="Center">
-                    <TextBox Watermark="Usuario" 
+
+                    <Border CornerRadius="10" ClipToBounds="True" Background="Gray">
+                        <Panel>
+                            <Panel Height="200">
+                                <icons:MaterialIcon Kind="AccountCircle" Width="200" Height="200" />
+                            </Panel>
+                        </Panel>
+                    </Border>
+
+                    <TextBox Watermark="Usuario"
                              Text="{Binding UserName}" />
-                    
-                    <TextBox Watermark="Senha" 
-                             PasswordChar="*" 
-                             Text="{Binding PassWord}" />
+
+                    <TextBox Watermark="Senha"
+                             PasswordChar="*"
+                             Text="{Binding PassWord}" 
+                             
+                             >
+                        <TextBox.KeyBindings>
+                            <KeyBinding Command="{Binding LoginCommand}" Gesture="Enter"/>
+                        </TextBox.KeyBindings>
+                    </TextBox>
 
                     <Button Content="Login"
-                            Command="{Binding LoginCommand}" />
-                    
+                            Command="{Binding LoginCommand}" 
+                            Margin="0, 15, 0, 0"
+                            />
+
                 </StackPanel>
             </controls:Card>
 

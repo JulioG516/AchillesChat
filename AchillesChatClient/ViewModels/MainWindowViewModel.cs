@@ -15,8 +15,9 @@ public partial class MainWindowViewModel : ViewModelBase
     private static LoginViewModel _loginViewModel;
     private static ChatViewModel _chatViewModel;
 
-    
+
     private readonly PageViewModelBase[] Pages;
+
     public MainWindowViewModel(LoginViewModel loginViewModel, ChatViewModel chatViewModel)
     {
         _loginViewModel = loginViewModel;
@@ -35,12 +36,14 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             // if (!string.IsNullOrEmpty(m.Value.UserName))
             // {
-                CurrentPage = Pages[1];
+            CurrentPage = Pages[1];
+            _chatViewModel.UserName = m.Value.UserName;
+            
             // }
         });
     }
 
-    
+
     // private  PageViewModelBase[] Pages =
     // {
     //     _loginViewModel,

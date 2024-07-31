@@ -10,9 +10,11 @@ namespace AchillesChatClient.ViewModels;
 public partial class LoginViewModel : PageViewModelBase
 {
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     public string _userName;
     
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(LoginCommand))]
     public string _passWord;
     
     
@@ -28,12 +30,7 @@ public partial class LoginViewModel : PageViewModelBase
         protected set => throw new NotSupportedException();
     }
     
-    [RelayCommand]
-    public void LoginCommand()
-    {
-        Login();
-    }
-
+    [RelayCommand(CanExecute = nameof(CanLogin))]
     private void Login()
     {
         UserLogin user = new()
@@ -44,4 +41,14 @@ public partial class LoginViewModel : PageViewModelBase
         
         WeakReferenceMessenger.Default.Send(new LoggedInUserChangedMessage(user));
     }
+
+    
+
+    private bool CanLogin()
+    {
+        return !string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(PassWord);
+    }
+        
+    
+    
 }
