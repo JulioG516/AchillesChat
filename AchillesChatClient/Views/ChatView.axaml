@@ -16,6 +16,71 @@
     </Design.DataContext>
 
 
+    <UserControl.Resources>
+        <DataTemplate x:Key="MessageDataTemplate" DataType="models:ChatMessage">
+            <Border MinHeight="40" MinWidth="280" Margin="10, 5, 10, 5"
+                    CornerRadius="6"
+                    BorderThickness="1"
+                    Classes.mineMessage="{Binding IsOriginNative}">
+
+                <Border.Styles>
+                    <Style Selector="Border">
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                        <Setter Property="Background" Value="#c0c0c0" />
+                    </Style>
+
+                    <Style Selector="Border.mineMessage">
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="Background" Value="#ebebeb" />
+                    </Style>
+                </Border.Styles>
+
+                <Grid RowDefinitions="Auto, Auto, 15">
+
+
+                    <TextBlock Grid.Row="1" Text="{Binding Message}"
+                               Foreground="Black"
+                               Margin="5, 5, 0,0"
+                               VerticalAlignment="Center"
+                               FontSize="16" />
+
+                    <StackPanel Grid.Row="2" >
+
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Margin="5, 5,0,0"  Text="{Binding MessageTime}" Foreground="Black"/>
+                        
+                            <icons:MaterialIcon Grid.Column="1" 
+                                                Margin="50, 0, 0, 0"
+                                                HorizontalAlignment="Right"
+                                                IsVisible="{Binding IsOriginNative}"
+                                                Classes.ackedMessage="{Binding IsAcked}"
+                                                Foreground="{DynamicResource AppThemePrimary500}">
+
+                                <icons:MaterialIcon.Styles>
+                                    <Style Selector="icons|MaterialIcon">
+                                        <Setter Property="Kind" Value="Check" />
+                                    </Style>
+
+                                    <Style Selector="icons|MaterialIcon.ackedMessage">
+                                        <Setter Property="Kind" Value="CheckAll" />
+                                    </Style>
+                                </icons:MaterialIcon.Styles>
+
+                            </icons:MaterialIcon>
+                        </Grid>    
+                        
+
+                    </StackPanel>
+                    
+
+
+                    
+                    
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
@@ -172,26 +237,27 @@
             </ListBox>
 
             <!-- Panel for displaying information  -->
-            <Panel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNull}}">
+            <Panel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                   IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNull}}">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <Panel>
                         <icons:MaterialIcon Kind="ChatPlus" Width="80" Height="80"></icons:MaterialIcon>
                     </Panel>
-                    
-                    <TextBlock Margin="0, 15, 0, 0" Text="Start a new chat with someone by clicking in their name." HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    
-                    <TextBlock Margin="0, 15, 0, 0" Text="Stay tuned with updates.(see below)" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    
-            
+
+                    <TextBlock Margin="0, 15, 0, 0" Text="Start a new chat with someone by clicking in their name."
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    <TextBlock Margin="0, 15, 0, 0" Text="Stay tuned with updates.(see below)"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+
                 </StackPanel>
             </Panel>
-                
-            
+
 
             <!-- Selected Participant Display -->
             <controls:Card Grid.Row="0" Grid.Column="1"
-                           IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNotNull}}"
-                           >
+                           IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNotNull}}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"
                             IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNotNull}}">
                     <Panel Margin="5">
@@ -239,17 +305,17 @@
 
             <!-- Chat view  -->
             <Panel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
-                   Background="{StaticResource SystemControlFocusVisualSecondaryBrush}"
-                   IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNotNull}}"
-                   >
+                   Background="{StaticResource ThemeAccentBrush3}"
+                   IsVisible="{Binding SelectedParticipant, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ItemsControl ItemsSource="{Binding SelectedParticipant.Chatter}"
+                              ItemTemplate="{DynamicResource MessageDataTemplate}">
 
-                
-                
+                </ItemsControl>
             </Panel>
 
             <!-- Chat Interactions buttons  -->
             <controls:Card Grid.Row="3" Grid.Column="1">
-                
+
             </controls:Card>
 
         </Grid>

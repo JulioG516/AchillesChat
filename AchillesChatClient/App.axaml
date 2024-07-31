@@ -18,4 +18,12 @@
         <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="DeepPurple" />
         <materialIcons:MaterialIconStyles />
     </Application.Styles>
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <MergeResourceInclude Source="Assets/Resources.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

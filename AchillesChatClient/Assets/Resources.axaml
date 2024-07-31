@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Add Resources Here -->
+    <SolidColorBrush x:Key="AppThemePrimary900">#050026</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary800">#0F004D</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary700">#1E0274</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary600">#35089B</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary500">#5617C2</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary400">#8D4BE5</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary300">#BC84F7</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary200">#E0BDFE</SolidColorBrush>
+    <SolidColorBrush x:Key="AppThemePrimary100">#FAF2FF</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="AppAccentTheme900">#002618</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme800">#004D35</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme700">#017457</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme600">#059B7E</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme500">#10C2AA</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme400">#44E5D9</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme300">#7FF7F5</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme200">#BAFBFE</SolidColorBrush>
+    <SolidColorBrush x:Key="AppAccentTheme100">#F2FEFF</SolidColorBrush>
+
+    
+</ResourceDictionary>

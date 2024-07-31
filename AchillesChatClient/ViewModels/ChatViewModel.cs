@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using AchillesChatClient.Models;
 using AchillesChatClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -28,7 +30,29 @@ public partial class ChatViewModel : PageViewModelBase
                 DisplayName = "Lana Del Rey",
                 IsTyping = true,
                 IsLoggedIn = true,
-                IsOverSeer = true
+                IsOverSeer = true,
+                Chatter = new ObservableCollection<ChatMessage>()
+                {
+                    new ChatMessage()
+                    {
+                        Message = "Hello ",
+                        IsOriginNative = false,
+                        MessageTime = DateTime.Now.AddDays(-2),
+                    },
+                    new ChatMessage()
+                    {
+                        Message = "Hello Lana",
+                        IsOriginNative = true,
+                        MessageTime = DateTime.Now.AddDays(-2),
+                        IsAcked = true
+                    },
+                    new ChatMessage()
+                    {
+                        Message = "How it's going ?",
+                        IsOriginNative = false,
+                        MessageTime = DateTime.Now.AddDays(-2),
+                    }
+                }
             },
             new ChatParticipant()
             {
@@ -188,7 +212,7 @@ public partial class ChatViewModel : PageViewModelBase
             SelectedParticipant = null;
         }
     }
-    
+
     #endregion
 
     # region Events
@@ -212,6 +236,8 @@ public partial class ChatViewModel : PageViewModelBase
         _chatService.ReceiveMessage += ChatServiceOnReceiveMessage;
 
         _chatService.ConnectAsync();
+
+        SelectedParticipant = Participants.First();
     }
 
     public override bool CanNavigateNext { get; protected set; }
