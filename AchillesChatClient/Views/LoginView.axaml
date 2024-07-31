@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AchillesChatClient.Views.LoginView"
+             xmlns:vm="using:AchillesChatClient.ViewModels"
+             xmlns:models="using:AchillesChatClient.Models"
+             xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             xmlns:icons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             x:DataType="vm:LoginViewModel">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:ChatViewModel />
+    </Design.DataContext>
+
+    <Panel>
+        <Grid RowDefinitions="*" ColumnDefinitions="*">
+            <controls:Card Background="Transparent">
+                <StackPanel MinWidth="200" Orientation="Vertical" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBox Watermark="Usuario" 
+                             Text="{Binding UserName}" />
+                    
+                    <TextBox Watermark="Senha" 
+                             PasswordChar="*" 
+                             Text="{Binding PassWord}" />
+
+                    <Button Content="Login"
+                            Command="{Binding LoginCommand}" />
+                    
+                </StackPanel>
+            </controls:Card>
+
+
+        </Grid>
+    </Panel>
+</UserControl>

@@ -1,88 +1,51 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using AchillesChatClient.Messages;
 using AchillesChatClient.Models;
 using AchillesChatClient.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace AchillesChatClient.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    private IChatService _chatService;
+    private static LoginViewModel _loginViewModel;
+    private static ChatViewModel _chatViewModel;
 
-    public MainWindowViewModel()
+    
+    private readonly PageViewModelBase[] Pages;
+    public MainWindowViewModel(LoginViewModel loginViewModel, ChatViewModel chatViewModel)
     {
-    }
+        _loginViewModel = loginViewModel;
+        _chatViewModel = chatViewModel;
 
-    # region fields property
-
-    [ObservableProperty] public string messageToSend;
-    [ObservableProperty] public string userName;
-    [ObservableProperty] public bool _isConnected;
-
-    public ObservableCollection<string> MessagesList { get; } = new();
-
-    public ObservableCollection<ChatParticipant> Participants { get; set; }
-        = new ObservableCollection<ChatParticipant>
+        // Populate the Pages array
+        Pages = new PageViewModelBase[]
         {
-            new ChatParticipant()
-            {
-                Name = "ellizabeth.grant",
-                DisplayName = "Lana Del Rey",
-                IsTyping = true,
-                IsLoggedIn = true,
-                IsOverSeer = true
-            },
-            new ChatParticipant()
-            {
-                Name = "john.doe",
-                DisplayName = "John Doe",
-                IsTyping = false,
-                IsLoggedIn = true,
-                IsOverSeer = false
-            },
-            new ChatParticipant()
-            {
-                Name = "david.bowie",
-                DisplayName = "David Bowie",
-                IsTyping = false,
-                IsLoggedIn = false,
-                IsOverSeer = false
-            }
+            loginViewModel,
+            chatViewModel
         };
 
-    [RelayCommand]
-    public void ConnectCommand()
-    {
-        _chatService.ConnectAsync();
+        _currentPage = Pages[0];
+
+        WeakReferenceMessenger.Default.Register<LoggedInUserChangedMessage>(this, (r, m) =>
+        {
+            // if (!string.IsNullOrEmpty(m.Value.UserName))
+            // {
+                CurrentPage = Pages[1];
+            // }
+        });
     }
 
-    private bool CanSendMessage() => !string.IsNullOrEmpty(MessageToSend);
+    
+    // private  PageViewModelBase[] Pages =
+    // {
+    //     _loginViewModel,
+    //     _chatViewModel
+    // };
 
-    [RelayCommand]
-    public void SendMessage()
-    {
-        _chatService.SendMessage(UserName, MessageToSend);
-    }
-
-    #endregion
-
-    # region Events
-
-    private void ChatServiceOnReceiveMessage(string name, string message)
-    {
-        MessagesList.Add($"User: {name} - {message}");
-    }
-
-    #endregion
-
-
-    public MainWindowViewModel(IChatService _chatService)
-    {
-        this._chatService = _chatService;
-
-        _chatService.ReceiveMessage += ChatServiceOnReceiveMessage;
-
-        _chatService.ConnectAsync();
-    }
+    [ObservableProperty] private PageViewModelBase _currentPage;
 }

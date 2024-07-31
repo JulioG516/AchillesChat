@@ -20,6 +20,9 @@ public partial class App : Application
     {
         _service.AddSingleton<IChatService, ChatService>();
         _service.AddSingleton<MainWindowViewModel>();
+        _service.AddSingleton<ChatViewModel>();
+        _service.AddSingleton<LoginViewModel>();
+
 
         _serviceProvider = _service.BuildServiceProvider();
     }
@@ -36,6 +39,9 @@ public partial class App : Application
             // Line below is needed to remove Avalonia data validation.
             // Without this line you will get duplicate validations from both Avalonia and CT
             BindingPlugins.DataValidators.RemoveAt(0);
+
+            var viewModelLocator = new ViewModelLocator(_serviceProvider);
+
 
             var mainWindowViewModel = _serviceProvider.GetRequiredService<MainWindowViewModel>();
 

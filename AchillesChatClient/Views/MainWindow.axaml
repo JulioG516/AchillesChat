@@ -26,146 +26,15 @@
                 <ExperimentalAcrylicMaterial
                     BackgroundSource="Digger"
                     TintColor="Black"
-                    TintOpacity="1"
+                    TintOpacity="1.2"
                     MaterialOpacity="0.45">
                 </ExperimentalAcrylicMaterial>
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
-        <Grid RowDefinitions="100, *, Auto" ColumnDefinitions="220, *">
-            <StackPanel Grid.Row="0" Grid.Column="0">
-                <!-- Height="100" -->
-                <controls:Card>
-                    <StackPanel Orientation="Vertical">
-                        <Grid Margin="0">
-                            <icons:MaterialIcon Kind="AccountCircle" Width="32" Height="32"
-                                                HorizontalAlignment="Stretch"
-                                                Margin="-4"
-                                                VerticalAlignment="Stretch" />
-
-                        </Grid>
-
-                        <TextBlock Text="Marilyin Monroe" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" FontWeight="Bold" Margin="0, 10, 0, 0">
-                        </TextBlock>
-
-                        <Separator Foreground="White" BorderThickness="0.5" />
-
-                        <StackPanel Orientation="Horizontal">
-                            <Label VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   Margin="70, 5, 0,0 ">
-                                Status:
-                            </Label>
-
-                            <Ellipse Width="8" Height="8" RenderTransformOrigin="5.562,0.938"
-                                     Margin="0, 6, 0,0"
-                                     Classes.connected="{Binding IsConnected}">
-                                <Ellipse.Styles>
-                                    <Styles>
-                                        <Style Selector="Ellipse.connected">
-                                            <Setter Property="Fill" Value="#64DD17" />
-                                        </Style>
-
-                                        <Style Selector="Ellipse">
-                                            <Setter Property="Fill" Value="#F44336" />
-                                        </Style>
-                                    </Styles>
-                                </Ellipse.Styles>
-                            </Ellipse>
-                        </StackPanel>
-
-                        <ToggleButton IsChecked="False" Margin="0, 5, 0,0" >
-                            <ToggleButton.Styles>
-                                
-                                <Style Selector="ToggleButton icons|MaterialIcon.notify-on">
-                                    <Setter Property="IsVisible" Value="False"></Setter>
-                                </Style>
-                                <Style Selector="ToggleButton:checked icons|MaterialIcon.notify-on">
-                                    <Setter Property="IsVisible" Value="True" />
-                                </Style>
-                                
-                                <Style Selector="ToggleButton icons|MaterialIcon.notify-off">
-                                    <Setter Property="IsVisible" Value="True"></Setter>
-                                    <Setter Property="Foreground" Value="Red"/>
-                                </Style>
-                                <Style Selector="ToggleButton:checked icons|MaterialIcon.notify-off">
-                                    <Setter Property="IsVisible" Value="False" />
-                                </Style>
-
-                                
-                            </ToggleButton.Styles>
-                            <Panel>
-                                <icons:MaterialIcon Classes="notify-on" Kind="NotificationsActive" Width="16"
-                                                    Height="16" />
-
-                                <icons:MaterialIcon Classes="notify-off" Kind="NotificationsOff" Width="16"
-                                                    Height="16" />
-
-                            </Panel>
-                        </ToggleButton>
-
-                    </StackPanel>
-
-
-                </controls:Card>
-
-
-                <ScrollViewer>
-                    <ListBox ItemsSource="{Binding  Participants }">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="models:ChatParticipant">
-                                <Border>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Grid Margin="6">
-                                            <icons:MaterialIcon Kind="AccountCircle" Width="24" Height="24"
-                                                                HorizontalAlignment="Stretch"
-                                                                Margin="-4"
-                                                                VerticalAlignment="Stretch" />
-
-                                        </Grid>
-
-
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   VerticalAlignment="Center" FontWeight="Bold" Margin="0, 0, 10, 0">
-                                        </TextBlock>
-
-                                        <Ellipse Width="8" Height="8" RenderTransformOrigin="5.562,0.938"
-                                                 Margin="0, 0, 10,0"
-                                                 Classes.activated="{Binding IsLoggedIn}">
-                                            <Ellipse.Styles>
-                                                <Styles>
-                                                    <Style Selector="Ellipse.activated">
-                                                        <Setter Property="Fill" Value="#64DD17" />
-                                                    </Style>
-
-                                                    <Style Selector="Ellipse">
-                                                        <Setter Property="Fill" Value="#F44336" />
-                                                    </Style>
-                                                </Styles>
-                                            </Ellipse.Styles>
-                                        </Ellipse>
-
-                                    </StackPanel>
-
-
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-            </StackPanel>
-
-
-            <Rectangle Grid.Row="0" Grid.RowSpan="1" Grid.Column="1"></Rectangle>
-
-            <Rectangle Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Fill="Orange"></Rectangle>
-
-
+        <Grid RowDefinitions="*">
+            <TransitioningContentControl Content="{Binding CurrentPage}" />
         </Grid>
-
-        <!-- Users  -->
-
 
     </Panel>
 
